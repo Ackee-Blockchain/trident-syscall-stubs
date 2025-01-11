@@ -1,0 +1,10 @@
+[package]
+name = "trident-syscall-stubs-v1"
+version = "0.0.1"
+edition = "2021"
+
+[dependencies]
+solana-program = "1.17"
+solana-sdk = "~2.0"
+solana-program-runtime = "~2.0"
+serde = { version = "1", default-features = false }
