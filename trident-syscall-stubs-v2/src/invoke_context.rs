@@ -5,7 +5,6 @@ use std::mem::transmute;
 
 use solana_program_runtime::invoke_context::InvokeContext;
 
-
 thread_local! {
     static INVOKE_CONTEXT: RefCell<Option<usize>> = const { RefCell::new(None) };
 }

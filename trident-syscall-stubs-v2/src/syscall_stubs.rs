@@ -81,21 +81,18 @@ impl program_stubs::SyscallStubs for TridentSyscallStubs {
         account_infos: &[AccountInfo<'_>],
         signers_seeds: &[&[&[u8]]],
     ) -> std::result::Result<(), ProgramError> {
-        let instruction = unsafe { transmute::<&Instruction, &Instruction>(instruction) };
-
-        let account_infos =
-            unsafe { transmute::<&[AccountInfo<'_>], &[AccountInfo<'_>]>(account_infos) };
-
         let instruction = StableInstruction::from(instruction.clone());
         let invoke_context = get_invoke_context();
         let log_collector = invoke_context.get_log_collector();
         let transaction_context = &invoke_context.transaction_context;
+
         let instruction_context = transaction_context
             .get_current_instruction_context()
-            .unwrap();
+            .map_err(|err| ProgramError::try_from(err).unwrap_or_else(|err| panic!("{}", err)))?;
+
         let caller = instruction_context
             .get_last_program_key(transaction_context)
-            .unwrap();
+            .map_err(|err| ProgramError::try_from(err).unwrap_or_else(|err| panic!("{}", err)))?;
 
         stable_log::program_invoke(
             &log_collector,
@@ -110,37 +107,45 @@ impl program_stubs::SyscallStubs for TridentSyscallStubs {
 
         let (instruction_accounts, program_indices) = invoke_context
             .prepare_instruction(&instruction, &signers)
-            .unwrap();
+            .map_err(|err| ProgramError::try_from(err).unwrap_or_else(|err| panic!("{}", err)))?;
 
         // Copy caller's account_info modifications into invoke_context accounts
         let transaction_context = &invoke_context.transaction_context;
         let instruction_context = transaction_context
             .get_current_instruction_context()
-            .unwrap();
+            .map_err(|err| ProgramError::try_from(err).unwrap_or_else(|err| panic!("{}", err)))?;
 
         let mut account_indices = Vec::with_capacity(instruction_accounts.len());
         for instruction_account in instruction_accounts.iter() {
             let account_key = transaction_context
                 .get_key_of_account_at_index(instruction_account.index_in_transaction)
-                .unwrap();
+                .map_err(|err| {
+                    ProgramError::try_from(err).unwrap_or_else(|err| panic!("{}", err))
+                })?;
             let account_info_index = account_infos
                 .iter()
                 .position(|account_info| account_info.unsigned_key() == account_key)
                 .ok_or(InstructionError::MissingAccount)
-                .unwrap();
+                .map_err(|err| {
+                    ProgramError::try_from(err).unwrap_or_else(|err| panic!("{}", err))
+                })?;
             let account_info = &account_infos[account_info_index];
             let mut borrowed_account = instruction_context
                 .try_borrow_instruction_account(
                     transaction_context,
                     instruction_account.index_in_caller,
                 )
-                .unwrap();
+                .map_err(|err| {
+                    ProgramError::try_from(err).unwrap_or_else(|err| panic!("{}", err))
+                })?;
             if borrowed_account.get_lamports() != account_info.lamports() {
                 borrowed_account
                     .set_lamports(account_info.lamports())
-                    .unwrap();
+                    .map_err(|err| {
+                        ProgramError::try_from(err).unwrap_or_else(|err| panic!("{}", err))
+                    })?;
             }
-            let account_info_data = account_info.try_borrow_data().unwrap();
+            let account_info_data = account_info.try_borrow_data()?;
             // The redundant check helps to avoid the expensive data comparison if we can
             match borrowed_account
                 .can_data_be_resized(account_info_data.len())
@@ -148,7 +153,9 @@ impl program_stubs::SyscallStubs for TridentSyscallStubs {
             {
                 Ok(()) => borrowed_account
                     .set_data_from_slice(&account_info_data)
-                    .unwrap(),
+                    .map_err(|err| {
+                        ProgramError::try_from(err).unwrap_or_else(|err| panic!("{}", err))
+                    })?,
                 Err(err) if borrowed_account.get_data() != *account_info_data => {
                     panic!("{err:?}");
                 }
@@ -158,7 +165,9 @@ impl program_stubs::SyscallStubs for TridentSyscallStubs {
             if borrowed_account.get_owner() != account_info.owner {
                 borrowed_account
                     .set_owner(account_info.owner.as_ref())
-                    .unwrap();
+                    .map_err(|err| {
+                        ProgramError::try_from(err).unwrap_or_else(|err| panic!("{}", err))
+                    })?;
             }
             if instruction_account.is_writable {
                 account_indices.push((instruction_account.index_in_caller, account_info_index));
@@ -175,19 +184,21 @@ impl program_stubs::SyscallStubs for TridentSyscallStubs {
                 &mut compute_units_consumed,
                 &mut ExecuteTimings::default(),
             )
-            .map_err(|e| convert_error(e).unwrap_or_else(|err| panic!("{}", err)))?;
+            .map_err(|err| ProgramError::try_from(err).unwrap_or_else(|err| panic!("{}", err)))?;
 
         // Copy invoke_context accounts modifications into caller's account_info
         let transaction_context = &invoke_context.transaction_context;
         let instruction_context = transaction_context
             .get_current_instruction_context()
-            .unwrap();
+            .map_err(|err| ProgramError::try_from(err).unwrap_or_else(|err| panic!("{}", err)))?;
         for (index_in_caller, account_info_index) in account_indices.into_iter() {
             let borrowed_account = instruction_context
                 .try_borrow_instruction_account(transaction_context, index_in_caller)
-                .unwrap();
+                .map_err(|err| {
+                    ProgramError::try_from(err).unwrap_or_else(|err| panic!("{}", err))
+                })?;
             let account_info = &account_infos[account_info_index];
-            **account_info.try_borrow_mut_lamports().unwrap() = borrowed_account.get_lamports();
+            **account_info.try_borrow_mut_lamports()? = borrowed_account.get_lamports();
             if account_info.owner != borrowed_account.get_owner() {
                 // TODO Figure out a better way to allow the System Program to set the account owner
                 #[allow(clippy::transmute_ptr_to_ptr)]
@@ -202,11 +213,11 @@ impl program_stubs::SyscallStubs for TridentSyscallStubs {
 
             // Resize account_info data
             if account_info.data_len() != new_len {
-                account_info.realloc(new_len, false).unwrap();
+                account_info.realloc(new_len, false)?;
             }
 
             // Clone the data
-            let mut data = account_info.try_borrow_mut_data().unwrap();
+            let mut data = account_info.try_borrow_mut_data()?;
 
             data.clone_from_slice(new_data);
         }
@@ -218,7 +229,6 @@ impl program_stubs::SyscallStubs for TridentSyscallStubs {
     fn sol_get_return_data(&self) -> std::option::Option<(Pubkey, std::vec::Vec<u8>)> {
         let (program_id, data) = get_invoke_context().transaction_context.get_return_data();
 
-        let program_id = unsafe { transmute::<&Pubkey, &Pubkey>(program_id) };
         Some((*program_id, data.to_vec()))
     }
     fn sol_set_return_data(&self, data: &[u8]) {
@@ -251,128 +261,5 @@ fn get_sysvar<T: Default + Sysvar + Sized + serde::de::DeserializeOwned + Clone>
             SUCCESS
         },
         Err(_) => UNSUPPORTED_SYSVAR,
-    }
-}
-
-fn convert_error(
-    error: InstructionError,
-) -> Result<ProgramError, solana_sdk::instruction::InstructionError> {
-    match error {
-        InstructionError::GenericError => {
-            Err(solana_sdk::instruction::InstructionError::GenericError)
-        }
-        InstructionError::InvalidArgument => Ok(ProgramError::InvalidArgument),
-        InstructionError::InvalidInstructionData => Ok(ProgramError::InvalidInstructionData),
-        InstructionError::InvalidAccountData => Ok(ProgramError::InvalidAccountData),
-        InstructionError::AccountDataTooSmall => Ok(ProgramError::AccountDataTooSmall),
-        InstructionError::InsufficientFunds => Ok(ProgramError::InsufficientFunds),
-        InstructionError::IncorrectProgramId => Ok(ProgramError::IncorrectProgramId),
-        InstructionError::MissingRequiredSignature => Ok(ProgramError::MissingRequiredSignature),
-        InstructionError::AccountAlreadyInitialized => Ok(ProgramError::AccountAlreadyInitialized),
-        InstructionError::UninitializedAccount => Ok(ProgramError::UninitializedAccount),
-        InstructionError::UnbalancedInstruction => {
-            Err(solana_sdk::instruction::InstructionError::UnbalancedInstruction)
-        }
-        InstructionError::ModifiedProgramId => {
-            Err(solana_sdk::instruction::InstructionError::ModifiedProgramId)
-        }
-        InstructionError::ExternalAccountLamportSpend => {
-            Err(solana_sdk::instruction::InstructionError::ExecutableLamportChange)
-        }
-        InstructionError::ExternalAccountDataModified => {
-            Err(solana_sdk::instruction::InstructionError::ExternalAccountDataModified)
-        }
-        InstructionError::ReadonlyLamportChange => {
-            Err(solana_sdk::instruction::InstructionError::ReadonlyLamportChange)
-        }
-        InstructionError::ReadonlyDataModified => {
-            Err(solana_sdk::instruction::InstructionError::ReadonlyDataModified)
-        }
-        InstructionError::DuplicateAccountIndex => {
-            Err(solana_sdk::instruction::InstructionError::DuplicateAccountIndex)
-        }
-        InstructionError::ExecutableModified => {
-            Err(solana_sdk::instruction::InstructionError::ExecutableModified)
-        }
-        InstructionError::RentEpochModified => {
-            Err(solana_sdk::instruction::InstructionError::RentEpochModified)
-        }
-        InstructionError::NotEnoughAccountKeys => Ok(ProgramError::NotEnoughAccountKeys),
-        InstructionError::AccountDataSizeChanged => {
-            Err(solana_sdk::instruction::InstructionError::AccountDataSizeChanged)
-        }
-        InstructionError::AccountNotExecutable => {
-            Err(solana_sdk::instruction::InstructionError::AccountNotExecutable)
-        }
-        InstructionError::AccountBorrowFailed => Ok(ProgramError::AccountBorrowFailed),
-        InstructionError::AccountBorrowOutstanding => {
-            Err(solana_sdk::instruction::InstructionError::AccountBorrowOutstanding)
-        }
-        InstructionError::DuplicateAccountOutOfSync => {
-            Err(solana_sdk::instruction::InstructionError::DuplicateAccountOutOfSync)
-        }
-        InstructionError::Custom(num) => Ok(ProgramError::Custom(num)),
-        InstructionError::InvalidError => {
-            Err(solana_sdk::instruction::InstructionError::InvalidError)
-        }
-        InstructionError::ExecutableDataModified => {
-            Err(solana_sdk::instruction::InstructionError::ExecutableDataModified)
-        }
-        InstructionError::ExecutableLamportChange => {
-            Err(solana_sdk::instruction::InstructionError::ExecutableLamportChange)
-        }
-        InstructionError::ExecutableAccountNotRentExempt => {
-            Err(solana_sdk::instruction::InstructionError::ExecutableAccountNotRentExempt)
-        }
-        InstructionError::UnsupportedProgramId => {
-            Err(solana_sdk::instruction::InstructionError::UnsupportedProgramId)
-        }
-        InstructionError::CallDepth => Err(solana_sdk::instruction::InstructionError::CallDepth),
-        InstructionError::MissingAccount => {
-            Err(solana_sdk::instruction::InstructionError::MissingAccount)
-        }
-        InstructionError::ReentrancyNotAllowed => {
-            Err(solana_sdk::instruction::InstructionError::ReentrancyNotAllowed)
-        }
-        InstructionError::MaxSeedLengthExceeded => Ok(ProgramError::MaxSeedLengthExceeded),
-        InstructionError::InvalidSeeds => Ok(ProgramError::InvalidSeeds),
-        InstructionError::InvalidRealloc => Ok(ProgramError::InvalidRealloc),
-        InstructionError::ComputationalBudgetExceeded => {
-            Err(solana_sdk::instruction::InstructionError::ComputationalBudgetExceeded)
-        }
-        InstructionError::PrivilegeEscalation => {
-            Err(solana_sdk::instruction::InstructionError::PrivilegeEscalation)
-        }
-        InstructionError::ProgramEnvironmentSetupFailure => {
-            Err(solana_sdk::instruction::InstructionError::ProgramEnvironmentSetupFailure)
-        }
-        InstructionError::ProgramFailedToComplete => {
-            Err(solana_sdk::instruction::InstructionError::ProgramFailedToComplete)
-        }
-        InstructionError::ProgramFailedToCompile => {
-            Err(solana_sdk::instruction::InstructionError::ProgramFailedToCompile)
-        }
-        InstructionError::Immutable => Err(solana_sdk::instruction::InstructionError::Immutable),
-        InstructionError::IncorrectAuthority => {
-            Err(solana_sdk::instruction::InstructionError::IncorrectAuthority)
-        }
-        InstructionError::BorshIoError(x) => Ok(ProgramError::BorshIoError(x)),
-        InstructionError::AccountNotRentExempt => Ok(ProgramError::AccountNotRentExempt),
-        InstructionError::InvalidAccountOwner => Ok(ProgramError::InvalidAccountOwner),
-        InstructionError::ArithmeticOverflow => Ok(ProgramError::ArithmeticOverflow),
-        InstructionError::UnsupportedSysvar => Ok(ProgramError::UnsupportedSysvar),
-        InstructionError::IllegalOwner => Ok(ProgramError::IllegalOwner),
-        InstructionError::MaxAccountsDataAllocationsExceeded => {
-            Ok(ProgramError::MaxAccountsDataAllocationsExceeded)
-        }
-        InstructionError::MaxAccountsExceeded => {
-            Err(solana_sdk::instruction::InstructionError::MaxAccountsExceeded)
-        }
-        InstructionError::MaxInstructionTraceLengthExceeded => {
-            Ok(ProgramError::MaxInstructionTraceLengthExceeded)
-        }
-        InstructionError::BuiltinProgramsMustConsumeComputeUnits => {
-            Ok(ProgramError::BuiltinProgramsMustConsumeComputeUnits)
-        }
     }
 }
