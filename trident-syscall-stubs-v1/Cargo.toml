@@ -1,7 +1,7 @@
 [package]
 name = "trident-syscall-stubs-v1"
 authors = ["Ackee Blockchain Security <hello@ackee.xyz>"]
-version = "0.0.1"
+version = "0.0.2-rc.1"
 edition = "2021"
 repository = "https://github.com/Ackee-Blockchain/trident-syscall-stubs"
 license-file = "../LICENSE"
@@ -11,6 +11,7 @@ description = "Implementation of syscall stubs for the Trident fuzzing framework
 
 [dependencies]
 solana-program = "1.17.3" # from 1.17.3 the ProgramError has variants as implemented
-solana-sdk = "~2.0"
-solana-program-runtime = "~2.0"
+solana-sdk = "2.1"
+solana-timings = "2.1"
+solana-program-runtime = "2.1"
 serde = { version = "1", default-features = false }

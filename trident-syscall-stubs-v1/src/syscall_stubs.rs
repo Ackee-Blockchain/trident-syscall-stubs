@@ -17,7 +17,7 @@ use solana_program::program_stubs;
 use solana_program::program_stubs::set_syscall_stubs;
 
 use solana_program_runtime::stable_log;
-use solana_program_runtime::timings::ExecuteTimings;
+use solana_timings::ExecuteTimings;
 
 use crate::get_invoke_context;
 use crate::TridentTryFrom;
