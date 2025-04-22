@@ -1,0 +1,15 @@
+[package]
+name = "trident-syscall-stubs-v3"
+authors = ["Ackee Blockchain Security <hello@ackee.xyz>"]
+version = "0.0.3"
+edition = "2021"
+repository = "https://github.com/Ackee-Blockchain/trident-syscall-stubs"
+license-file = "../LICENSE"
+readme = "../README.md"
+description = "Implementation of syscall stubs for the Trident fuzzing framework."
+
+[dependencies]
+solana-sdk = "2.1"
+solana-program-runtime = "2.1"
+solana-timings = "2.1"
+serde = { version = "1", default-features = false }
