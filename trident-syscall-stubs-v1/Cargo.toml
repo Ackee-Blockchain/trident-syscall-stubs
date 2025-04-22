@@ -11,7 +11,7 @@ description = "Implementation of syscall stubs for the Trident fuzzing framework
 
 [dependencies]
 solana-program = "1.17.3" # from 1.17.3 the ProgramError has variants as implemented
-solana-sdk = "2.1"
-solana-timings = "2.1"
-solana-program-runtime = "2.1"
+solana-sdk = "2.2"
+solana-timings = "2.2"
+solana-program-runtime = "2.2"
 serde = { version = "1", default-features = false }

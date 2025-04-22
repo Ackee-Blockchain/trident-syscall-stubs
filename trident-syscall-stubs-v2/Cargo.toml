@@ -9,7 +9,7 @@ readme = "../README.md"
 description = "Implementation of syscall stubs for the Trident fuzzing framework."
 
 [dependencies]
-solana-timings = "2.1"
-solana-sdk = "2.1"
-solana-program-runtime = "2.1"
+solana-timings = "2.2"
+solana-sdk = "2.2"
+solana-program-runtime = "2.2"
 serde = { version = "1", default-features = false }
