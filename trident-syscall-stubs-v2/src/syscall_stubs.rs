@@ -19,7 +19,7 @@ use solana_sdk::stable_layout::stable_instruction::StableInstruction;
 use solana_sdk::sysvar::Sysvar;
 
 use solana_program_runtime::stable_log;
-use solana_program_runtime::timings::ExecuteTimings;
+use solana_timings::ExecuteTimings;
 
 static ONCE: Once = Once::new();
 
