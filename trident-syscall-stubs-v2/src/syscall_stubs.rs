@@ -213,6 +213,7 @@ impl program_stubs::SyscallStubs for TridentSyscallStubs {
 
             // Resize account_info data
             if account_info.data_len() != new_len {
+                #[allow(deprecated)]
                 account_info.realloc(new_len, false)?;
             }
 

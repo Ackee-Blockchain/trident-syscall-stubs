@@ -18,5 +18,8 @@ pub fn get_invoke_context<'a, 'b>() -> &'a mut InvokeContext<'b> {
         Some(val) => val,
         None => panic!("Invoke context not set!"),
     });
-    unsafe { transmute::<usize, &mut InvokeContext>(ptr) }
+    #[allow(integer_to_ptr_transmutes)]
+    unsafe {
+        transmute::<usize, &mut InvokeContext>(ptr)
+    }
 }
