@@ -1,9 +1,0 @@
-/home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/trident-syscall-stubs-v2-0.0.2-rc.1/target/debug/deps/solana_borsh-3a0c31f6a25ce599.d: /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-borsh-2.2.1/src/lib.rs /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-borsh-2.2.1/src/deprecated.rs /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-borsh-2.2.1/src/macros.rs /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-borsh-2.2.1/src/v0_10.rs /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-borsh-2.2.1/src/v1.rs
-
-/home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/trident-syscall-stubs-v2-0.0.2-rc.1/target/debug/deps/libsolana_borsh-3a0c31f6a25ce599.rmeta: /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-borsh-2.2.1/src/lib.rs /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-borsh-2.2.1/src/deprecated.rs /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-borsh-2.2.1/src/macros.rs /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-borsh-2.2.1/src/v0_10.rs /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-borsh-2.2.1/src/v1.rs
-
-/home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-borsh-2.2.1/src/lib.rs:
-/home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-borsh-2.2.1/src/deprecated.rs:
-/home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-borsh-2.2.1/src/macros.rs:
-/home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-borsh-2.2.1/src/v0_10.rs:
-/home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-borsh-2.2.1/src/v1.rs:
