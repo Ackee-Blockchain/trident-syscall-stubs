@@ -1,0 +1,9 @@
+/home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/trident-syscall-stubs-v2-0.0.2-rc.1/target/debug/deps/ascii-b4079545b7be0b37.d: /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ascii-0.9.3/src/lib.rs /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ascii-0.9.3/src/ascii_char.rs /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ascii-0.9.3/src/ascii_str.rs /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ascii-0.9.3/src/ascii_string.rs /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ascii-0.9.3/src/free_functions.rs
+
+/home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/trident-syscall-stubs-v2-0.0.2-rc.1/target/debug/deps/libascii-b4079545b7be0b37.rmeta: /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ascii-0.9.3/src/lib.rs /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ascii-0.9.3/src/ascii_char.rs /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ascii-0.9.3/src/ascii_str.rs /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ascii-0.9.3/src/ascii_string.rs /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ascii-0.9.3/src/free_functions.rs
+
+/home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ascii-0.9.3/src/lib.rs:
+/home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ascii-0.9.3/src/ascii_char.rs:
+/home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ascii-0.9.3/src/ascii_str.rs:
+/home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ascii-0.9.3/src/ascii_string.rs:
+/home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ascii-0.9.3/src/free_functions.rs:

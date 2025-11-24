@@ -1,0 +1,9 @@
+/home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/trident-syscall-stubs-v2-0.0.2-rc.1/target/debug/deps/libsecp256k1-0afa46df4426043a.d: /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libsecp256k1-0.6.0/src/lib.rs /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/trident-syscall-stubs-v2-0.0.2-rc.1/target/debug/build/libsecp256k1-3f1af5c46a793eae/out/const.rs /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/trident-syscall-stubs-v2-0.0.2-rc.1/target/debug/build/libsecp256k1-3f1af5c46a793eae/out/const_gen.rs
+
+/home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/trident-syscall-stubs-v2-0.0.2-rc.1/target/debug/deps/liblibsecp256k1-0afa46df4426043a.rmeta: /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libsecp256k1-0.6.0/src/lib.rs /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/trident-syscall-stubs-v2-0.0.2-rc.1/target/debug/build/libsecp256k1-3f1af5c46a793eae/out/const.rs /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/trident-syscall-stubs-v2-0.0.2-rc.1/target/debug/build/libsecp256k1-3f1af5c46a793eae/out/const_gen.rs
+
+/home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libsecp256k1-0.6.0/src/lib.rs:
+/home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/trident-syscall-stubs-v2-0.0.2-rc.1/target/debug/build/libsecp256k1-3f1af5c46a793eae/out/const.rs:
+/home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/trident-syscall-stubs-v2-0.0.2-rc.1/target/debug/build/libsecp256k1-3f1af5c46a793eae/out/const_gen.rs:
+
+# env-dep:OUT_DIR=/home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/trident-syscall-stubs-v2-0.0.2-rc.1/target/debug/build/libsecp256k1-3f1af5c46a793eae/out

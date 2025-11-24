@@ -1,0 +1,10 @@
+/home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/trident-syscall-stubs-v2-0.0.2-rc.1/target/debug/deps/version_check-2571cf324060ec01.d: /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/version_check-0.9.5/src/lib.rs /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/version_check-0.9.5/src/version.rs /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/version_check-0.9.5/src/channel.rs /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/version_check-0.9.5/src/date.rs
+
+/home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/trident-syscall-stubs-v2-0.0.2-rc.1/target/debug/deps/libversion_check-2571cf324060ec01.rlib: /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/version_check-0.9.5/src/lib.rs /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/version_check-0.9.5/src/version.rs /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/version_check-0.9.5/src/channel.rs /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/version_check-0.9.5/src/date.rs
+
+/home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/trident-syscall-stubs-v2-0.0.2-rc.1/target/debug/deps/libversion_check-2571cf324060ec01.rmeta: /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/version_check-0.9.5/src/lib.rs /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/version_check-0.9.5/src/version.rs /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/version_check-0.9.5/src/channel.rs /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/version_check-0.9.5/src/date.rs
+
+/home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/version_check-0.9.5/src/lib.rs:
+/home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/version_check-0.9.5/src/version.rs:
+/home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/version_check-0.9.5/src/channel.rs:
+/home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/version_check-0.9.5/src/date.rs:

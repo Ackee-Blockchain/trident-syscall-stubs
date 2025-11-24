@@ -1,0 +1,10 @@
+/home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/trident-syscall-stubs-v2-0.0.2-rc.1/target/debug/deps/num_bigint-add6aded7a93c3d0.d: /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/num-bigint-0.2.6/src/lib.rs /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/num-bigint-0.2.6/src/macros.rs /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/num-bigint-0.2.6/src/bigint.rs /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/num-bigint-0.2.6/src/biguint.rs /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/num-bigint-0.2.6/src/algorithms.rs /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/num-bigint-0.2.6/src/monty.rs
+
+/home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/trident-syscall-stubs-v2-0.0.2-rc.1/target/debug/deps/libnum_bigint-add6aded7a93c3d0.rmeta: /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/num-bigint-0.2.6/src/lib.rs /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/num-bigint-0.2.6/src/macros.rs /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/num-bigint-0.2.6/src/bigint.rs /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/num-bigint-0.2.6/src/biguint.rs /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/num-bigint-0.2.6/src/algorithms.rs /home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/num-bigint-0.2.6/src/monty.rs
+
+/home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/num-bigint-0.2.6/src/lib.rs:
+/home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/num-bigint-0.2.6/src/macros.rs:
+/home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/num-bigint-0.2.6/src/bigint.rs:
+/home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/num-bigint-0.2.6/src/biguint.rs:
+/home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/num-bigint-0.2.6/src/algorithms.rs:
+/home/m4ud-cairo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/num-bigint-0.2.6/src/monty.rs:
